@@ -26,6 +26,18 @@ nav {
 	justify-content: space-around;
 	align-items: center;
 	height: 80px;
-	background-color: #a167ff;
+	background-color: #222222;
+
+	a {
+		font-weight: 500;
+		font-size: 1.2rem;
+		color: #b0b0b0;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #eeeeee;
+		text-decoration: underline;
+		box-shadow: #aaaaaa;
+	}
 }
 </style>

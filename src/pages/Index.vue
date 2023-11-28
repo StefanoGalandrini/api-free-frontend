@@ -65,16 +65,17 @@ export default {
 }
 
 .card {
-	border: 1px solid #ddd;
-	border-radius: 8px;
+	border: 1px solid #222222;
+	border-radius: 0.5rem;
 	overflow: hidden;
 	width: 300px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	background-color: #222222;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .card-image {
 	width: 100%;
-	height: 200px;
+	aspect-ratio: 4 / 3;
 	object-fit: cover;
 }
 
