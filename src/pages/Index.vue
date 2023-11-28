@@ -8,15 +8,24 @@ export default {
 		};
 	},
 
-	mounted() {
-		axios
-			.get("http://localhost:3000/posts")
-			.then((response) => {
+	methods: {
+		async fetchPosts() {
+			try {
+				const response = await axios.get("http://localhost:3000/posts");
 				this.posts = response.data;
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+			} catch (error) {
+				console.error(error);
+			}
+		},
+	},
+
+	mounted() {
+		this.fetchPosts();
+	},
+
+	beforeRouteUpdate(to, from, next) {
+		this.fetchPosts();
+		next();
 	},
 };
 </script>
