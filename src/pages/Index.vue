@@ -28,6 +28,14 @@ export default {
 			<div class="card-body">
 				<h2 class="card-title">{{ post.title }}</h2>
 				<p class="card-content">{{ post.content }}</p>
+
+				<!-- user, category and tags -->
+				<p class="card-user">Autore: {{ post.user.name }}</p>
+				<p class="card-category">Categoria: {{ post.category.name }}</p>
+				<div class="card-tags">
+					Tags:
+					<span v-for="tag in post.tags" :key="tag.id">{{ tag.name }}</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -72,5 +80,26 @@ export default {
 .card-content {
 	font-size: 1em;
 	color: #808080;
+}
+
+.card-user,
+.card-category {
+	margin: 1rem 0;
+	font-style: italic;
+}
+
+.card-tags {
+	margin-top: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	span {
+		font-size: 0.8rem;
+		background-color: #cfb5ff;
+		color: #333333;
+		padding: 5px;
+		max-width: fit-content;
+		border-radius: 5px;
+	}
 }
 </style>
