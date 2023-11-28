@@ -21,6 +21,11 @@ export default {
 
 	methods: {
 		async submitPost() {
+			// generazione del campo immagine
+			// (caricamento utente da imlementare
+			const randomId = Math.floor(Math.random() * 250) + 1;
+			this.post.image = `https://picsum.photos/id/${randomId}/400/300`;
+
 			try {
 				const response = await axios.post(
 					"http://localhost:3000/posts",
@@ -71,10 +76,12 @@ export default {
 </script>
 
 <template>
-	<form @submit.prevent="submitPost">
+	<form @submit.prevent="submitPost" class="form-container">
+		<!-- Categoria -->
 		<div class="form-group">
-			<label for="category">Categoria: </label>
-			<select id="category" v-model="post.categoryId">
+			<label for="category">Categoria:</label>
+			<select v-model="post.categoryId">
+				<option disabled value="">Seleziona una categoria</option>
 				<option
 					v-for="category in categories"
 					:value="category.id"
@@ -84,6 +91,7 @@ export default {
 			</select>
 		</div>
 
+		<!-- Tags -->
 		<div class="form-group">
 			<label class="tags-label">Tags</label>
 			<div class="tags-container">
@@ -98,88 +106,108 @@ export default {
 			</div>
 		</div>
 
+		<!-- Titolo -->
 		<div class="form-group">
-			<label for="title">Titolo e contenuto: </label>
-			<input type="text" v-model="post.title" placeholder="Titolo del Post" />
-
-			<textarea
-				v-model="post.content"
-				placeholder="Contenuto del Post"></textarea>
+			<label for="title">Titolo del Post:</label>
+			<input type="text" id="title" v-model="post.title" />
 		</div>
 
+		<!-- Contenuto -->
 		<div class="form-group">
-			<label class="tags-label">Pubblicato: </label>
-			<input type="checkbox" v-model="post.published" />
+			<label for="content">Contenuto del Post:</label>
+			<textarea id="content" v-model="post.content"></textarea>
 		</div>
 
+		<!-- Pubblicato -->
 		<div class="form-group">
+			<label for="published">Pubblicato:</label>
+			<input type="checkbox" id="published" v-model="post.published" />
+		</div>
+
+		<!-- User -->
+		<div class="form-group">
+			<label for="user">Utente:</label>
 			<select v-model="post.userId">
+				<option disabled value="">Seleziona un utente</option>
 				<option v-for="user in users" :value="user.id" :key="user.id">
 					{{ user.name }}
 				</option>
 			</select>
 		</div>
 
-		<button type="submit">Crea Post</button>
+		<!-- Bottone di Invio -->
+		<div class="button-container">
+			<button type="submit">Crea Post</button>
+		</div>
 	</form>
 </template>
 
 <style lang="scss" scoped>
-form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	max-width: 60vw;
-	margin: 0 auto;
+.form-container {
+	max-width: 600px;
+	margin: auto;
 	padding: 20px;
 }
 
 .form-group {
-	margin-bottom: 2rem;
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+label {
+	flex-basis: 20%;
+	margin-right: 10px;
 }
 
 input[type="text"],
 textarea,
 select {
-	margin-bottom: 15px;
-	padding: 10px;
+	flex-grow: 1;
+	padding: 8px;
 	border: 1px solid #ccc;
-	border-radius: 5px;
-	display: inline;
+	border-radius: 4px;
 }
 
-.tags-label {
-	margin-bottom: 30px;
+textarea {
+	resize: vertical;
+	height: 100px;
 }
 
 .tags-container {
-	margin-top: 1rem;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 3rem;
+	gap: 10px;
+	flex-grow: 1;
 }
 
 .tag-item {
 	display: flex;
-	align-items: start;
+	align-items: center;
+	white-space: nowrap;
 }
 
 input[type="checkbox"] {
-	margin-bottom: 15px;
 	margin-right: 5px;
 }
 
-button {
-	width: fit-content;
-	padding: 10px 15px;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
+.button-container {
+	text-align: center;
 
-button:hover {
-	background-color: #0056b3;
+	button {
+		background-color: #a167ff;
+		color: #333333;
+		padding: 10px 15px;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 16px;
+		transition: background-color 0.3s;
+
+		&:hover {
+			background-color: #cbabff;
+			color: #202020;
+		}
+	}
 }
 </style>
