@@ -76,73 +76,81 @@ export default {
 </script>
 
 <template>
-	<form @submit.prevent="submitPost" class="form-container">
-		<!-- Categoria -->
-		<div class="form-group">
-			<label for="category">Categoria:</label>
-			<select v-model="post.categoryId">
-				<option disabled value="">Seleziona una categoria</option>
-				<option
-					v-for="category in categories"
-					:value="category.id"
-					:key="category.id">
-					{{ category.name }}
-				</option>
-			</select>
-		</div>
+	<div class="container">
+		<form @submit.prevent="submitPost" class="form-container">
+			<!-- Categoria -->
+			<div class="form-group">
+				<label for="category">Categoria:</label>
+				<select v-model="post.categoryId">
+					<option disabled value="">Seleziona una categoria</option>
+					<option
+						v-for="category in categories"
+						:value="category.id"
+						:key="category.id">
+						{{ category.name }}
+					</option>
+				</select>
+			</div>
 
-		<!-- Tags -->
-		<div class="form-group">
-			<label class="tags-label">Tags</label>
-			<div class="tags-container">
-				<div v-for="tag in tags" :key="tag.id" class="tag-item">
-					<input
-						type="checkbox"
-						:id="'tag-' + tag.id"
-						:value="tag.id"
-						v-model="post.tags" />
-					<label :for="'tag-' + tag.id">{{ tag.name }}</label>
+			<!-- Tags -->
+			<div class="form-group">
+				<label class="tags-label">Tags</label>
+				<div class="tags-container">
+					<div v-for="tag in tags" :key="tag.id" class="tag-item">
+						<input
+							type="checkbox"
+							:id="'tag-' + tag.id"
+							:value="tag.id"
+							v-model="post.tags" />
+						<label :for="'tag-' + tag.id">{{ tag.name }}</label>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<!-- Titolo -->
-		<div class="form-group">
-			<label for="title">Titolo del Post:</label>
-			<input type="text" id="title" v-model="post.title" />
-		</div>
+			<!-- Titolo -->
+			<div class="form-group">
+				<label for="title">Titolo del Post:</label>
+				<input type="text" id="title" v-model="post.title" />
+			</div>
 
-		<!-- Contenuto -->
-		<div class="form-group">
-			<label for="content">Contenuto del Post:</label>
-			<textarea id="content" v-model="post.content"></textarea>
-		</div>
+			<!-- Contenuto -->
+			<div class="form-group">
+				<label for="content">Contenuto del Post:</label>
+				<textarea id="content" v-model="post.content"></textarea>
+			</div>
 
-		<!-- Pubblicato -->
-		<div class="form-group">
-			<label for="published">Pubblicato:</label>
-			<input type="checkbox" id="published" v-model="post.published" />
-		</div>
+			<!-- Pubblicato -->
+			<div class="form-group">
+				<label for="published">Pubblicato:</label>
+				<input type="checkbox" id="published" v-model="post.published" />
+			</div>
 
-		<!-- User -->
-		<div class="form-group">
-			<label for="user">Utente:</label>
-			<select v-model="post.userId">
-				<option disabled value="">Seleziona un utente</option>
-				<option v-for="user in users" :value="user.id" :key="user.id">
-					{{ user.name }}
-				</option>
-			</select>
-		</div>
+			<!-- User -->
+			<div class="form-group">
+				<label for="user">Utente:</label>
+				<select v-model="post.userId">
+					<option disabled value="">Seleziona un utente</option>
+					<option v-for="user in users" :value="user.id" :key="user.id">
+						{{ user.name }}
+					</option>
+				</select>
+			</div>
 
-		<!-- Bottone di Invio -->
-		<div class="button-container">
-			<button type="submit">Crea Post</button>
-		</div>
-	</form>
+			<!-- Bottone di Invio -->
+			<div class="button-container">
+				<button type="submit">Crea Post</button>
+			</div>
+		</form>
+	</div>
 </template>
 
 <style lang="scss" scoped>
+.container {
+	margin-top: 100px;
+	width: 100%;
+	height: 100%;
+}
+
 .form-container {
 	max-width: 600px;
 	margin: auto;
@@ -195,8 +203,8 @@ input[type="checkbox"] {
 	text-align: center;
 
 	button {
-		background-color: #a167ff;
-		color: #333333;
+		background-color: #222222;
+		color: #aaaaaa;
 		padding: 10px 15px;
 		border: none;
 		border-radius: 4px;
@@ -205,8 +213,8 @@ input[type="checkbox"] {
 		transition: background-color 0.3s;
 
 		&:hover {
-			background-color: #cbabff;
-			color: #202020;
+			background-color: #454545;
+			color: #eeeeee;
 		}
 	}
 }

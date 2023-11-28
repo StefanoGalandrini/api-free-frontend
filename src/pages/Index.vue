@@ -56,6 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 .cards-container {
+	margin-top: 100px;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
