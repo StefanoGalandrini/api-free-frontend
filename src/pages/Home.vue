@@ -4,6 +4,15 @@ export default {};
 
 <template>
 	<h1>HOME PAGE</h1>
+	<h2>Lista dei posts</h2>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+body {
+	margin-top: 120px;
+}
+
+h1 {
+	color: red;
+}
+</style>
